@@ -9,18 +9,27 @@ const CardContainer = styled.div`
 
 const Card = styled.div`
   background: #f3f3f3;
-  height: 200px;
+  height: 50px;
   width: 300px;
-  padding-top: 12%;
-  border-radius: 10%;
-  margin: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  margin: 10px 10px 20px;
   transition: 0.5s;
   box-shadow: 10px 10px 18px 0px rgba(0, 0, 0, 0.75);
 
+  p {
+    display: none;
+    transition: 0.9s;
+    color: #fff;
+  }
+
   &:hover {
     color: #f3f3f3;
-    background: #282c34;
+    background: #912f40;
     box-shadow: 5px 5px 9px 0px rgba(0, 0, 0, 0.9);
+    padding-top: 10%;
+    height: 200px;
+    border-radius: 10%;
 
     h2 {
       font-size: 2rem;
@@ -28,6 +37,7 @@ const Card = styled.div`
 
     p {
       font-size: 1.3rem;
+      display: block;
     }
   }
 `;

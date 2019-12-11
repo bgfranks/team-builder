@@ -38,7 +38,7 @@ const Form = ({ addNewTeam }) => {
   const submitForm = event => {
     event.preventDefault();
     addNewTeam(person);
-    event.target.value = "";
+    setPerson({ name: "", email: "", role: "" });
   };
 
   return (
