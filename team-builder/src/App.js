@@ -30,6 +30,8 @@ function App() {
     },
   ]);
 
+  const [editMember, setEditMember] = useState({});
+
   const addNewTeam = person => {
     const newTeam = {
       id: Date.now(),
@@ -41,13 +43,34 @@ function App() {
     setTeam([...team, newTeam]);
   };
 
+  const editTeam = teamMember => {
+    setEditMember(teamMember);
+  };
+
+  const completeEdit = updatedMember => {
+    team.map(member => {
+      if (member.id === updatedMember.id[0]) {
+        member.name = updatedMember.name;
+        member.email = updatedMember.email;
+        member.role = updatedMember.role;
+        setEditMember({});
+      }
+      return null;
+    });
+  };
+
   return (
     <AppContainer>
       <Header>
         <h1>Team Builder</h1>
       </Header>
-      <Form addNewTeam={addNewTeam} />
-      <TeamCard member={team} />
+      <Form
+        addNewTeam={addNewTeam}
+        editMember={editMember}
+        completeEdit={completeEdit}
+        setEditMember={setEditMember}
+      />
+      <TeamCard member={team} editTeam={editTeam} />
     </AppContainer>
   );
 }

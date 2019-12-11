@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const FormContainer = styled.form`
@@ -28,8 +28,20 @@ const Button = styled.button`
   }
 `;
 
-const Form = ({ addNewTeam }) => {
-  const [person, setPerson] = useState({ name: "", email: "", role: "" });
+const Form = ({ addNewTeam, editMember, completeEdit }) => {
+  const [person, setPerson] = useState({
+    id: 0,
+    name: "",
+    email: "",
+    role: "",
+  });
+
+  function isEmpty(obj) {
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) return false;
+    }
+    return true;
+  }
 
   const handleChanges = event => {
     setPerson({ ...person, [event.target.name]: event.target.value });
@@ -37,9 +49,28 @@ const Form = ({ addNewTeam }) => {
 
   const submitForm = event => {
     event.preventDefault();
-    addNewTeam(person);
+
+    if (isEmpty(editMember) === true) {
+      addNewTeam(person);
+    } else {
+      completeEdit(person);
+    }
+
     setPerson({ name: "", email: "", role: "" });
   };
+
+  useEffect(() => {
+    if (isEmpty(editMember) === true) {
+      setPerson({ name: "", email: "", role: "" });
+    } else {
+      setPerson({
+        id: [editMember.id],
+        name: [editMember.name],
+        email: [editMember.email],
+        role: [editMember.role],
+      });
+    }
+  }, [editMember]);
 
   return (
     <FormContainer onSubmit={submitForm}>
