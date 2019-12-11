@@ -25,6 +25,7 @@ function App() {
     {
       id: 1,
       name: "Brandon Franks",
+      email: "bgfranks106@icloud.com",
       role: "Front End Developer",
     },
   ]);
@@ -33,6 +34,7 @@ function App() {
     const newTeam = {
       id: Date.now(),
       name: person.name,
+      email: person.email,
       role: person.role,
     };
 

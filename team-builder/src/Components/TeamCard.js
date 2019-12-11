@@ -15,10 +15,12 @@ const Card = styled.div`
   border-radius: 10%;
   margin: 10px;
   transition: 0.5s;
+  box-shadow: 10px 10px 18px 0px rgba(0, 0, 0, 0.75);
 
   &:hover {
     color: #f3f3f3;
     background: #282c34;
+    box-shadow: 5px 5px 9px 0px rgba(0, 0, 0, 0.9);
 
     h2 {
       font-size: 2rem;
@@ -36,6 +38,7 @@ const TeamCard = props => {
       {props.member.map(team => (
         <Card key={team.id}>
           <h2>{team.name}</h2>
+          <p>{team.email}</p>
           <p>{team.role}</p>
         </Card>
       ))}

@@ -29,7 +29,7 @@ const Button = styled.button`
 `;
 
 const Form = ({ addNewTeam }) => {
-  const [person, setPerson] = useState({ name: "", role: "" });
+  const [person, setPerson] = useState({ name: "", email: "", role: "" });
 
   const handleChanges = event => {
     setPerson({ ...person, [event.target.name]: event.target.value });
@@ -38,6 +38,7 @@ const Form = ({ addNewTeam }) => {
   const submitForm = event => {
     event.preventDefault();
     addNewTeam(person);
+    event.target.value = "";
   };
 
   return (
@@ -49,6 +50,16 @@ const Form = ({ addNewTeam }) => {
         name="name"
         onChange={handleChanges}
         value={person.name}
+        required
+      />
+      <label htmlFor="email">Email</label>
+      <FormInput
+        id="email"
+        type="text"
+        name="email"
+        onChange={handleChanges}
+        value={person.email}
+        required
       />
       <label htmlFor="role">Role</label>
       <FormInput
@@ -57,6 +68,7 @@ const Form = ({ addNewTeam }) => {
         name="role"
         onChange={handleChanges}
         value={person.role}
+        required
       />
       <Button type="submit">Add to Team</Button>
     </FormContainer>
